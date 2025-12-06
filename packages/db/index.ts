@@ -15,5 +15,5 @@ if (process.env.NODE_ENV !== "production") {
     globalforprisma.prisma = prismaClient
 }
 
-export const prisma = Prisma;
+// export const prisma = Prisma.PrismaClientInitializationError;
 // export const prismaClient = new PrismaClient({adapter})

@@ -10,6 +10,9 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@repo/backend-common": "workspace:*",
+    "@repo/common": "workspace:*",
+    "@repo/db": "workspace:*",
     "@trpc/server": "^11.7.2",
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
@@ -17,10 +20,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
-    "@repo/db": "workspace:*",
     "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "@repo/common": "workspace:*",
-    "@repo/backend-common": "workspace:*"
+    "jsonwebtoken": "^9.0.3"
   }
 }

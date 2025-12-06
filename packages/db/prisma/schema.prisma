@@ -27,7 +27,7 @@ model Workflow {
   nodes        Json        @default("[]")
   edges        Json        @default("[]")
   isActive     Boolean     @default(false)
-  triggerId    String      @unique
+  triggerId    String?      @unique
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
   userId       String
