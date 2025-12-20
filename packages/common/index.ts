@@ -5,6 +5,8 @@ export const userSchema = z.object({
     password: z.string().regex(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/, {message:"Password must be 8-16 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character, and must not contain spaces."})
 })
 
+//TODO: 
+
 export const createWorkflowSchema = z.object({
     userId: z.string(),
     name: z.string().min(1).max(50),
