@@ -14,8 +14,8 @@ export const workflowRouter = router({
                         description: input.description,
                         nodes: [],
                         edges: [],
-                        userId: "userId_1",
                         // userId: "userId_1",
+                        userId: input.userId
                     }
                 })
     
@@ -32,14 +32,14 @@ export const workflowRouter = router({
         }),
         // Fetching all workflows belonging to the user
     list: publicProcedure
-        // .input(getWorkflow)
+        .input(getWorkflow)
         .query(async (opts) => {
-            // const {input} = opts
+            const {input} = opts
             try {
                 const allUserWorkflows = await opts.ctx.prismaClient.workflow.findMany({
                     where: {
-                        // userId: input.userId
-                        userId: "userId_1"
+                        userId: input.userId
+                        // userId: "userId_1"
                     },
                     orderBy: {
                         createdAt: 'desc'

@@ -5,6 +5,7 @@ import { workflowRouter } from "./router/workflowRouter";
 import express from "express";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import cors from "cors";
+import { webhookRoute } from "./router/webhook";
 
 const app = express()
 
@@ -25,6 +26,8 @@ app.use(
         createContext
     })
 )
+
+app.use("", webhookRoute)
 
 app.listen(4000, () => {
     console.log('server running on http://localhost:4000')
