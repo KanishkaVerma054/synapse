@@ -1,10 +1,12 @@
 import React from 'react'
+import Flow from '@/components/Flow'
 
 
-const getWorkflowId = (slug:string) => {
+const getWorkflowId = (workflowId:string) => {
   return (
     <div>
-        <p>Hi</p>
+        <Flow/>
+        {/* <Flow workflowId={workflowId}/> */}
     </div>
   )
 }

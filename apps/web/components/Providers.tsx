@@ -6,12 +6,13 @@ import { httpBatchLink } from "@trpc/client"
 import { PropsWithChildren, useState } from "react"
 
 export function TRPCProvider(props: PropsWithChildren) {
-    const [queryClient] = useState(() => new QueryClient)
+    const [queryClient] = useState(() => new QueryClient())
     const [trpcClient] = useState(() =>
         trpc.createClient({
             links: [
                 httpBatchLink({
                     url: BACKEND_URL,
+
                 })
             ]
         })

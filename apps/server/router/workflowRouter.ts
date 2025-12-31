@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { publicProcedure, router } from "../trpc";
-import { createWorkflowSchema, getWorkflow, updateWorkflowSchema } from "@repo/common/types";
+import { createWorkflowSchema, updateWorkflowSchema } from "@repo/common/types";
+import {z} from "zod"
 
 export const workflowRouter = router({
     create: publicProcedure
@@ -14,8 +15,8 @@ export const workflowRouter = router({
                         description: input.description,
                         nodes: [],
                         edges: [],
-                        // userId: "userId_1",
-                        userId: input.userId
+                        userId: "userId_1",
+                        // userId: input.userId
                     }
                 })
     
@@ -32,14 +33,14 @@ export const workflowRouter = router({
         }),
         // Fetching all workflows belonging to the user
     list: publicProcedure
-        .input(getWorkflow)
+        // .input(getWorkflow)
         .query(async (opts) => {
             const {input} = opts
             try {
                 const allUserWorkflows = await opts.ctx.prismaClient.workflow.findMany({
                     where: {
-                        userId: input.userId
-                        // userId: "userId_1"
+                        // userId: input.userId
+                        userId: "user_1"
                     },
                     orderBy: {
                         createdAt: 'desc'
@@ -57,13 +58,13 @@ export const workflowRouter = router({
             }
         }),
     getOne: publicProcedure
-        .input(getWorkflow)
+        .input(z.object({id: z.string()}))
         .query(async(opts) => {
             const {input} = opts
             try {
                 const getWorkflow = await opts.ctx.prismaClient.workflow.findFirst({
                     where: {
-                        userId: input.userId
+                        userId: input.id
                         // userId: "userId_1"
                     }
                 })
@@ -79,7 +80,10 @@ export const workflowRouter = router({
             }
         }),
     updateWorkflow: publicProcedure
-        .input(updateWorkflowSchema)
+        .input(z.object({
+            id: z.string(), 
+            data: updateWorkflowSchema
+        }))
         .mutation(async(opts) => {
             const {input} = opts
             try {
@@ -88,9 +92,9 @@ export const workflowRouter = router({
                         id: input.id
                     },
                     data: {
-                        workflowName: input.name,
-                        nodes: input.nodes,
-                        edges: input.edges
+                        workflowName: input.data.name,
+                        nodes: input.data.nodes,
+                        edges: input.data.edges
                     }
                 })
                 return {

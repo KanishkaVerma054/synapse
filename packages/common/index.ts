@@ -8,17 +8,17 @@ export const userSchema = z.object({
 //TODO: 
 
 export const createWorkflowSchema = z.object({
-    userId: z.string(),
+    // userId: z.string(),
     name: z.string().min(1).max(50),
     description: z.string().min(5).optional()
 })
 
-export const getWorkflow = z.object({
-    userId: z.string()
-})
+// export const getWorkflow = z.object({
+//     userId: z.string()
+// })
 
 export const updateWorkflowSchema = z.object({
-    id: z.string(),
+    // id: z.string(),
     name: z.string().min(1).optional(),
     nodes: z.array(z.any()).optional(), // in db nodes will be json, but for now here it will be an array 
     edges: z.array(z.any()).optional(),
